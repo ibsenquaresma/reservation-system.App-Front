@@ -1,6 +1,7 @@
 {
   "name": "reservation-system",
   "version": "0.1.0",
+  "type": "module",
   "main": "src/index.tsx",
   "private": true,
   "dependencies": {
@@ -9,7 +10,6 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.126",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "autoprefixer": "^10.0.0",
@@ -19,7 +19,6 @@
     "react-router-dom": "^6.30.0",
     "react-scripts": "5.0.1",
     "tailwindcss": "^3.0.0",
-    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "zustand": "^4.0.0"
   },
@@ -29,9 +28,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "lint:fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^20.17.23",
     "@typescript-eslint/eslint-plugin": "^8.26.0",
     "@typescript-eslint/parser": "^8.26.0",
     "@vitejs/plugin-react": "^4.3.4",
@@ -62,7 +62,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^3.4.17",
-    "typescript": "^4.0.0",
+    "typescript": "^4.9.5",
     "vite": "^6.2.0"
   }
 }
