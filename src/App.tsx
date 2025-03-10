@@ -22,9 +22,9 @@ function App() {
             <Routes>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/my-bookings" element={<MyBookings />} />
-              <Route path="/room/:id" element={<RoomDetail />} />
               <Route path="/" element={<Home />} />
               <Route path="/rooms" element={<Rooms />} />
+              <Route path="/room-detail/:id" element={<RoomDetail />} />
               <Route path="/about" element={<About />} />
               <Route path="/login" element={<Login />} />
             </Routes>
