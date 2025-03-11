@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 export default function ReservaLocal() {
-  const [horaInicio, setTimeStart] = useState("");
-  const [horaFim, setTimeEnd] = useState("");
+  const [timeStart, setTimeStart] = useState("");
+  const [timeEnd, setTimeEnd] = useState("");
   const navigate = useNavigate()
   const handleConfirm = () => {
-    alert(`Reserva confirmada das ${horaInicio} às ${horaFim}`);
+    alert(`Reserva confirmada das ${timeStart} às ${timeEnd}`);
   };
 
   const handleBack = () => {
