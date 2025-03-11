@@ -20,7 +20,7 @@ export default function ReservaLocal() {
         Start Time:
         <input
           type="time"
-          value={horaInicio}
+          value={timeStart}
           onChange={(e) => setTimeStart(e.target.value)}
           className="border p-2 rounded"
         />
@@ -29,7 +29,7 @@ export default function ReservaLocal() {
         End Time:
         <input
           type="time"
-          value={horaFim}
+          value={timeEnd}
           onChange={(e) => setTimeEnd(e.target.value)}
           className="border p-2 rounded"
         />
