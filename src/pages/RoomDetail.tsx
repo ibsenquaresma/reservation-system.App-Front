@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import CenteredAlert  from "../components/Alert"; // Importa o alerta
 
 type Room = {
   id: number
@@ -13,6 +14,7 @@ const RoomDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>() // Pegando o id da URL
   const navigate = useNavigate()
   const [room, setRoom] = useState<Room | null>(null)
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     if (id) {
@@ -36,7 +38,9 @@ const RoomDetail: React.FC = () => {
   }
 
   const handleBook = () => {
-    alert('Room booked!')
+    //alert('Room booked!')
+    setAlertMessage(`Room reserved!`);
+    setTimeout(() => setAlertMessage(""), 3000); // Esconde o alerta após 3s
   }
 
   return (
@@ -50,6 +54,12 @@ const RoomDetail: React.FC = () => {
             {room.available ? 'Available' : 'Unavailable'}
           </p>
           <div className="mt-4">
+              {alertMessage && (
+                  <CenteredAlert message={alertMessage} onClose={() => setAlertMessage("")} />
+              )}
+              {
+              
+              }
             <button
               onClick={handleBook}
               className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
