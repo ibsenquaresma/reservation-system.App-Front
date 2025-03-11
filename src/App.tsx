@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import MyBookings from './pages/MyBookings';
 import RoomDetail from './pages/RoomDetail';
+import ReservationRoom from './pages/ReservationRoom';
 // import Sidebar from './components/Sidebar'
 
 
@@ -25,6 +26,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/rooms" element={<Rooms />} />
               <Route path="/room-detail/:id" element={<RoomDetail />} />
+              <Route path="/reservation-room/:id" element={<ReservationRoom />} />
               <Route path="/about" element={<About />} />
               <Route path="/login" element={<Login />} />
             </Routes>
