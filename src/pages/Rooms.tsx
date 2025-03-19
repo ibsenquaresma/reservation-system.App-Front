@@ -66,7 +66,8 @@ const Rooms: React.FC = () => {
   const paginate = (pageNumber: number) => setPage(pageNumber)
 
   const handleReserve = (room: Room) => {
-    alert(`Room ${room.name} reserved!`) // Simula o botão de reserva
+    //alert(`Room ${room.name} reserved!`) // Simula o botão de reserva
+    navigate(`/reservation-room/${room.id}`) // Usando navigate para redirecionar para os detalhes da sala
   }
 
   const handleViewDetails = (room: Room) => {
