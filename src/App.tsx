@@ -31,7 +31,7 @@ function Layout() {
             <Route path="/room-detail/:id" element={<RoomDetail />} />
             <Route path="/reservation-room/:id" element={<ReservationRoom />} />
             <Route path="/about" element={<About />} />
-            <Route path="/home" element={<Home />} />
+            
           </Routes>
         </div>
       </div>
