@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import CenteredAlert from '../components/Alert'; // Ajuste o caminho conforme necessário
+import Home from '../pages/Home';
 
 export default function PasswordVerification() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -18,9 +21,9 @@ export default function PasswordVerification() {
 
   const handleNext = () => {
     if (username === "admin" && password === "admin") {
-      navigate("/rooms");
+      navigate("/home");
     } else {
-      alert("Please enter both username and password");
+      setShowAlert(true);
     }
   };
 
@@ -77,7 +80,6 @@ export default function PasswordVerification() {
               <button
                 type="button"
                 className="absolute right-3 text-gray-500"
-                //onClick={() => setShowPassword(!showPassword)}
                 onClick={togglePasswordVisibility}
               >
                 {showPassword ? "👁️" : "🙈"}
@@ -94,6 +96,14 @@ export default function PasswordVerification() {
           </button>
         </div>
       </div>
+
+      {/* Alerta personalizado */}
+      {showAlert && (
+        <CenteredAlert 
+          message="Please enter both username and password" 
+          onClose={() => setShowAlert(false)} 
+        />
+      )}
     </div>
   );
 }
