@@ -9,14 +9,14 @@ const Navbar: React.FC = () => {
           Room Booking
         </Link>
         <div className="flex gap-4">
-          <Link to="/" className="hover:text-gray-300">
+          <Link to="/home" className="hover:text-gray-300">
             Home
           </Link>
-          <Link to="/rooms" className="hover:text-gray-300">
+          {/* <Link to="/rooms" className="hover:text-gray-300">
             Rooms
-          </Link>
-          <Link to="/about" className="hover:text-gray-300">
-            About
+          </Link> */}
+          <Link to="/floor-plan" className="hover:text-gray-300">
+            Rooms
           </Link>
           <Link to="/login" className="hover:text-gray-300">
             Login

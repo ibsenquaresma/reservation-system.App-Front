@@ -7,13 +7,14 @@ import {
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Rooms from './pages/Rooms';
-import About from './pages/About';
+import RoomsAvailables from './pages/RoomsAvailables';
+import FloorPlan from './pages/FloorPlan';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import MyBookings from './pages/MyBookings';
 import RoomDetail from './pages/RoomDetail';
-import ReservationRoom from './pages/ReservationRoom';
+import RoomsReservations from './pages/RoomReservation';
+import NotFoundPage from './components/404';
 
 function Layout() {
   const location = useLocation();
@@ -27,11 +28,12 @@ function Layout() {
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/my-bookings" element={<MyBookings />} />
-            <Route path="/rooms" element={<Rooms />} />
+            <Route path="/rooms" element={<RoomsAvailables />} />
             <Route path="/room-detail/:id" element={<RoomDetail />} />
-            <Route path="/reservation-room/:id" element={<ReservationRoom />} />
-            <Route path="/about" element={<About />} />
-            
+            <Route path="/reservation-room/:id" element={<RoomsReservations />} />
+            <Route path="/floor-plan" element={<FloorPlan />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </div>
@@ -46,6 +48,7 @@ function App() {
         {/* Login separado do Layout */}
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
+
         {/* As demais páginas usam o Layout */}
         <Route path="/*" element={<Layout />} />
       </Routes>
