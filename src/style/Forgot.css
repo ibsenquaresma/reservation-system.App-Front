@@ -1,0 +1,31 @@
+.login__forgot__title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--title-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .login__forgot__mini__title {
+    color: var(--title-color);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .login__forgot__label {
+    color:var(--title-color);;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+    display: block;
+    text-align: left;
+  }
+
+  .login__remembered {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color:var(--title-color);;
+  }
+
+  .login__back {
+    color: hsl(0, 0%, 0%);
+    font-weight: 600;
+  }

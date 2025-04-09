@@ -10,11 +10,15 @@ import Home from './pages/Home';
 import RoomsAvailables from './pages/RoomsAvailables';
 import FloorPlan from './pages/FloorPlan';
 import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
+import Login from './pages/Login/Login';
 import MyBookings from './pages/MyBookings';
 import RoomDetail from './pages/RoomDetail';
 import RoomsReservations from './pages/RoomReservation';
 import NotFoundPage from './components/404';
+import ForgotPassword from './pages/Login/ForgotPassword';
+import Register from './pages/Login/Register';
+import Contact from './pages/Contact';
+import About from './pages/About';
 
 function Layout() {
   const location = useLocation();
@@ -33,6 +37,8 @@ function Layout() {
             <Route path="/reservation-room/:id" element={<RoomsReservations />} />
             <Route path="/floor-plan" element={<FloorPlan />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
@@ -45,11 +51,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Login separado do Layout */}
+        
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
-
-        {/* As demais páginas usam o Layout */}
+        <Route path='/forgot' element={<ForgotPassword />} />
+        <Route path='/register' element={<Register />} />
+        
         <Route path="/*" element={<Layout />} />
       </Routes>
     </Router>

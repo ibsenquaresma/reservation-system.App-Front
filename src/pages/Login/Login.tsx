@@ -1,51 +1,64 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CenteredAlert from '../components/Alert'; // Ajuste o caminho conforme necessário
-import Home from '../pages/Home';
+import CenteredAlert from '../../components/Alert';
+import bgImage from '../../img/bg.jpg';
+import styles from '../../style/login.module.css'
 
 export default function PasswordVerification() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState("");
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
-    setShowPassword((prevState) => {
-      console.log("Previous state:", prevState);
-      const newState = !prevState;
-      console.log("New state:", newState);
-      return newState;
-    });
+    setShowPassword((prevState) => !prevState);
   };
 
-  const handleNext = () => {
-    if (username === "admin" && password === "admin") {
-      navigate("/home");
-    } else {
-      setShowAlert(true);
+  const handleNext = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        localStorage.setItem('token', data.token); // salva JWT
+        navigate('/home');
+      } else {
+        setShowAlert(data.message);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setShowAlert('Something went wrong!');
     }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="w-96 p-6 text-center bg-white shadow-lg rounded-xl">
-        {/* Ícone de visibilidade da senha */}
+    <div
+      className="flex items-center justify-center h-screen bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      <div className="w-96 p-6 text-center bg-white/20 backdrop-blur-md shadow-lg rounded-xl border border-white/30">
         <div className="flex justify-center mb-4">
           <span className="text-6xl">{password ? '🙈' : '🙉'}</span>
         </div>
 
-        <h2 className="text-xl font-bold">Login</h2>
-        <p className="text-gray-500 text-sm mt-2">
+        <h2 className={styles.login__title}>Login</h2>
+        <p className={styles.login__mini__title}>
           Please enter your credentials to continue.
         </p>
 
         <div className="mt-4">
-          {/* Campo Username */}
+        <div className="login__group">
+          {/* Username */}
           <div className="relative mb-4">
             <label
               htmlFor="username"
-              className="text-left block text-gray-600 text-sm mb-1"
+              className={styles.login__label}
             >
               Username
             </label>
@@ -59,11 +72,11 @@ export default function PasswordVerification() {
             />
           </div>
 
-          {/* Campo Password */}
+          {/* Password */}
           <div className="relative mb-4">
             <label
               htmlFor="password"
-              className="text-left block text-gray-600 text-sm mb-1"
+              className={styles.login__label}
             >
               Password
             </label>
@@ -76,7 +89,6 @@ export default function PasswordVerification() {
                 className="w-full p-2 border border-gray-300 rounded-md pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your password"
               />
-              {/* Botão para alternar visibilidade da senha */}
               <button
                 type="button"
                 className="absolute right-3 text-gray-500"
@@ -86,7 +98,7 @@ export default function PasswordVerification() {
               </button>
             </div>
           </div>
-
+          </div>
           {/* Botão NEXT */}
           <button
             onClick={handleNext}
@@ -94,14 +106,35 @@ export default function PasswordVerification() {
           >
             NEXT
           </button>
+
+          {/* Links extras */}
+          <div className="mt-4 text-sm text-white">
+            <a
+              href="#"
+              className={styles.login__forgot}
+              // className="text-blue-200 hover:underline"
+              onClick={() => navigate('/forgot')}
+            >
+              Forgot password?
+            </a>
+            <div className={styles.login__register}>
+              Don’t have an account?{' '}
+              <a
+                href="#"
+                className={styles.login__register}
+                onClick={() => navigate('/register')}
+              >
+                Register
+              </a>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Alerta personalizado */}
       {showAlert && (
-        <CenteredAlert 
-          message="Please enter both username and password" 
-          onClose={() => setShowAlert(false)} 
+        <CenteredAlert
+          message={showAlert}
+          onClose={() => setShowAlert("")}
         />
       )}
     </div>
