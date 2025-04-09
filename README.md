@@ -31,7 +31,7 @@ cd room-booking-system
 ### 2. Install dependencies
 
 ```bash
-npm install
+npm run setup
 ```
 
 ### 3. Set up the backend
