@@ -19,6 +19,7 @@ import ForgotPassword from './pages/Login/ForgotPassword';
 import Register from './pages/Login/Register';
 import Contact from './pages/Contact';
 import About from './pages/About';
+import ResetPassword from './pages/Login/ResetPassword';
 
 function Layout() {
   const location = useLocation();
@@ -51,12 +52,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Login />} />
         <Route path='/forgot' element={<ForgotPassword />} />
         <Route path='/register' element={<Register />} />
-        
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/*" element={<Layout />} />
       </Routes>
     </Router>

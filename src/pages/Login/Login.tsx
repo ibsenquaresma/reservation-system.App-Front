@@ -7,6 +7,7 @@ import styles from '../../style/login.module.css'
 export default function PasswordVerification() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showAlert, setShowAlert] = useState("");
   const navigate = useNavigate();
@@ -17,14 +18,15 @@ export default function PasswordVerification() {
 
   const handleNext = async () => {
     try {
-      const response = await fetch('http://localhost:3000/auth/login', {
+      const response = await fetch('http://localhost:3001/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
-  
+      console.log(email);
+      console.log(password);
       const data = await response.json();
-  
+      console.log(data);
       if (response.ok) {
         localStorage.setItem('token', data.token); // salva JWT
         navigate('/home');
@@ -65,8 +67,8 @@ export default function PasswordVerification() {
             <input
               id="username"
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your username"
             />
