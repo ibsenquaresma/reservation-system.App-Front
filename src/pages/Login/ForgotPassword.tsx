@@ -2,17 +2,19 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bgImage from '../../img/bg.jpg';
 import '../../style/Forgot.css';
+import CenteredAlert from '../../components/Alert';
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [showAlert, setShowAlert] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/auth/forgot-password', {
+      const response = await fetch('http://localhost:3001/auth/forgot-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,17 +27,17 @@ export default function ForgotPassword() {
       if (response.ok) {
         setSubmitted(true);
       } else {
-        alert(data.message || 'Something went wrong. Please try again.');
+        setShowAlert(data.message || 'Something went wrong. Please try again.');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Something went wrong. Please try again.');
+      setShowAlert('Something went wrong. Please try again.');
     }
   };
 
   const handleResend = async () => {
     try {
-      const response = await fetch('http://localhost:3000/auth/forgot-password', {
+      const response = await fetch('http://localhost:3001/auth/forgot-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,13 +47,13 @@ export default function ForgotPassword() {
       
       const data = await response.json();
       if (response.ok) {
-        alert('Instructions resent to your email.');
+        setShowAlert('Instructions resent to your email.');
       } else {
-        alert(data.message || 'Failed to resend instructions');
+        setShowAlert(data.message || 'Failed to resend instructions');
       }
     } catch (error) {
       console.error('Error during resend:', error);
-      alert('Failed to resend instructions. Please try again.');
+      setShowAlert('Failed to resend instructions. Please try again.');
     }
   };
 
@@ -115,6 +117,14 @@ export default function ForgotPassword() {
           </button>
         </div>
       </div>
+
+      {showAlert && (
+        <CenteredAlert
+          message={showAlert}
+          onClose={() => setShowAlert("")}
+        />
+      )}
+      
     </div>
   );
 }
