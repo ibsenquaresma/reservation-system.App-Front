@@ -27,6 +27,12 @@ export default function PasswordVerification() {
       console.log(password);
       const data = await response.json();
       console.log(data);
+
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+      console.log("Login accessToken: " + data.accessToken)
+      console.log("Login refreshToken: " + data.refreshToken)
+
       if (response.ok) {
         localStorage.setItem('token', data.token); // salva JWT
         navigate('/home');

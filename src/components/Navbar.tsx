@@ -1,38 +1,8 @@
-// import React from 'react'
-// import { Link } from 'react-router-dom'
-
-// const Navbar: React.FC = () => {
-//   return (
-//     <nav className="bg-blue-600 text-white px-6 py-4 shadow-md">
-//       <div className="container mx-auto flex justify-between items-center">
-//         <Link to="/home" className="text-2xl font-bold">
-//           Room Booking
-//         </Link>
-//         <div className="flex gap-4">
-//           <Link to="/home" className="hover:text-gray-300">
-//             Home
-//           </Link>
-//           {/* <Link to="/rooms" className="hover:text-gray-300">
-//             Rooms
-//           </Link> */}
-//           <Link to="/floor-plan" className="hover:text-gray-300">
-//             Rooms
-//           </Link>
-//           <Link to="/login" className="hover:text-gray-300">
-//             Login
-//           </Link>
-//         </div>
-//       </div>
-//     </nav>
-//   )
-// }
-
-// export default Navbar
-
 import React, { useState } from 'react';
 import '../style/NavBar.css';
 import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.jpg";
+import LogoutButton from "../pages/Login/LogoutButton";
 
 interface NavItem {
   name: string;
@@ -41,16 +11,17 @@ interface NavItem {
 }
 
 const NavBar: React.FC = () => {
-  const navigate = useNavigate();
   
+  console.log("Navbar accessToken "+ localStorage.getItem("accessToken"));
+  console.log("Navbar refreshToken: " + localStorage.getItem("refreshToken"))
 
+
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState('Home');
 
   const handleClick = () => {
     navigate('/login');
-    // ou com estado:
-    // navigate('/pagina', { state: { id: 1 } });
   };
 
   const navItems: NavItem[] = [
@@ -105,8 +76,9 @@ const NavBar: React.FC = () => {
         </ul>
 
         <div className="navbar-actions">
-          <button className="btn-primary" onClick={handleClick}>Login</button>
+          <LogoutButton />
         </div>
+
       </div>
     </nav>
   );
