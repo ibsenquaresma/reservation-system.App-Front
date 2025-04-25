@@ -20,6 +20,7 @@ import Register from './pages/Login/Register';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import ResetPassword from './pages/Login/ResetPassword';
+import LogoutButton from './pages/Login/LogoutButton';
 
 function Layout() {
   const location = useLocation();
@@ -47,6 +48,13 @@ function Layout() {
     </div>
   );
 }
+
+const Header = () => (
+  <div className="flex justify-between items-center p-4 bg-gray-100 shadow">
+    <h1 className="text-xl font-bold">My App</h1>
+    <LogoutButton />
+  </div>
+);
 
 function App() {
   return (
