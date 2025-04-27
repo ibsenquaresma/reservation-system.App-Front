@@ -60,7 +60,7 @@ export default function PasswordVerification() {
     >
       <div className="w-96 p-6 text-center bg-white/20 backdrop-blur-md shadow-lg rounded-xl border border-white/30">
         <div className="flex justify-center mb-4">
-          <span className="text-6xl">{password ? '🙈' : '🙉'}</span>
+        <span className="text-6xl">{password ? '🙀' : '🐱'}</span>
         </div>
 
         <h2 className={styles.login__title}>Login</h2>
@@ -110,7 +110,7 @@ export default function PasswordVerification() {
                 className="absolute right-3 text-gray-500"
                 onClick={togglePasswordVisibility}
               >
-                {showPassword ? "👁️" : "🙈"}
+                {showPassword ? "👁️" : "😸"}
               </button>
             </div>
           </div>
