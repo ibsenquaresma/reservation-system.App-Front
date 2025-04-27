@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../style/NavBar.css';
 import { useNavigate } from "react-router-dom";
-import logo from "../img/logo.jpg";
+import logo from "../img/logo2.png";
 import LogoutButton from "../pages/Login/LogoutButton";
 
 interface NavItem {
@@ -44,13 +44,14 @@ const NavBar: React.FC = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <div className="navbar-brand">
-        <a href="/home" className="logo">
+        {/* <a href="/home" className="logo">
           <img 
-            src=""
+            src={logo}
             alt="img"
             className='img'
+            width={80} height={36}
           />
-        </a>
+        </a> */}
           <button 
             className="menu-toggle" 
             onClick={toggleMenu}
