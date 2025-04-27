@@ -15,7 +15,7 @@ const LogoutButton: React.FC = () => {
       return;
     }
   
-    if (isLoggingOut) return; // Previna múltiplos cliques
+    if (isLoggingOut) return;
     setIsLoggingOut(true);
 
     try {
