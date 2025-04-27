@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../../common/auth';
 
 const LogoutButton: React.FC = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('accessToken'); // ou o nome que você usou
-  console.log("LOGOUT accessToken: " + localStorage.getItem('accessToken'))
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const accessToken = localStorage.getItem('accessToken');
+  console.log("LOGOUT accessToken: " + accessToken);
 
   const handleLogout = async () => {
-    const token = localStorage.getItem('accessToken'); // Pega o token do localStorage
-  
-    if (!token) {
+    
+    if (!accessToken) {
       console.error('No token found in localStorage');
       return;
     }
   
+    if (isLoggingOut) return; // Previna múltiplos cliques
+    setIsLoggingOut(true);
+
     try {
       const response = await fetch('http://localhost:3001/auth/logout', {
         method: 'POST'
@@ -25,9 +29,12 @@ const LogoutButton: React.FC = () => {
       
       console.log("LOGOUT accessToken: " + localStorage.getItem('accessToken')) 
       console.log('Logout successful');
+      logout();
       navigate('/login');
     } catch (error) {
       console.error('Error during logout:', error);
+    } finally {
+      setIsLoggingOut(false);
     }
   };
   
@@ -37,7 +44,8 @@ const LogoutButton: React.FC = () => {
       onClick={handleLogout}
       className="text-sm bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
     >
-      Logout
+      {isLoggingOut ? 'Logging out...' : 'Logout'}
+
     </button>
   );
 };

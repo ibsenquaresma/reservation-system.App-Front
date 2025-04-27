@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import CenteredAlert from '../../components/Alert';
 import bgImage from '../../img/bg.jpg';
 import styles from '../../style/login.module.css'
+import { login } from '../../common/auth';
 
 export default function PasswordVerification() {
   const [username, setUsername] = useState('');
@@ -30,12 +31,19 @@ export default function PasswordVerification() {
 
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
-      console.log("Login accessToken: " + data.accessToken)
-      console.log("Login refreshToken: " + data.refreshToken)
+      
+      console.log(response.ok);
 
       if (response.ok) {
-        localStorage.setItem('token', data.token); // salva JWT
-        navigate('/home');
+        if (data.accessToken) {
+          localStorage.setItem('token', data.accessToken);
+          
+          console.log("Login accessToken: " + data.accessToken)
+          console.log("Login refreshToken: " + data.refreshToken)
+
+          login(data.accessToken);
+          navigate('/home');
+        }
       } else {
         setShowAlert(data.message);
       }
