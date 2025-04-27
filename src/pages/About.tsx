@@ -1,4 +1,5 @@
 import React from "react";
+import aboutUS from "../img/about_us.png";
 
 const About: React.FC = () => {
   return (
@@ -7,10 +8,9 @@ const About: React.FC = () => {
         <h2 className="text-3xl font-bold text-gray-800 mb-6">About Us</h2>
 
         <div className="flex flex-col md:flex-row items-center gap-8">
-          {/* Seção de Imagem */}
           <div className="w-full md:w-1/2">
             <img
-              src="https://via.placeholder.com/400"
+              src={aboutUS}
               alt="About Us Illustration"
               className="w-full h-auto rounded-lg shadow-md"
             />
