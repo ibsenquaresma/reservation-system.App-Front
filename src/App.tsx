@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -21,10 +16,12 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import ResetPassword from './pages/Login/ResetPassword';
 import LogoutButton from './pages/Login/LogoutButton';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { PublicRoute } from './components/PublicRoute'; // 👈 importa aqui
 
 function Layout() {
   const location = useLocation();
-  const hideNavbarRoutes = ['/login']; // Oculta a navbar na página de login
+  const hideNavbarRoutes = ['/login'];
 
   return (
     <div className="flex">
@@ -49,23 +46,53 @@ function Layout() {
   );
 }
 
-const Header = () => (
-  <div className="flex justify-between items-center p-4 bg-gray-100 shadow">
-    <h1 className="text-xl font-bold">My App</h1>
-    <LogoutButton />
-  </div>
-);
-
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Login />} />
-        <Route path='/forgot' element={<ForgotPassword />} />
-        <Route path='/register' element={<Register />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/*" element={<Layout />} />
+        {/* Rotas públicas, protegidas por PublicRoute */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/forgot"
+          element={
+            <PublicRoute>
+              <ForgotPassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            <PublicRoute>
+              <ResetPassword />
+            </PublicRoute>
+          }
+        />
+
+        {/* Todas as rotas protegidas */}
+        <Route
+          path="/*"
+          element={
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
