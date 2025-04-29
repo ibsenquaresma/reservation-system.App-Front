@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import bgImage from '../../img/bg.jpg';
 import CenteredAlert from '../../components/Alert';
 import '../../style/Register.css';
+import PasswordStrengthChecker from '../Login/PasswordStrengthChecker';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -84,33 +85,14 @@ export default function Register() {
               required
             />
           </div>
-
-          <div className="mb-4 text-left">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-input"
-              placeholder="Create a password"
-              required
+          
+          <PasswordStrengthChecker
+              password={password}
+              confirmPassword={confirmPassword}
+              setPassword={setPassword}
+              setConfirmPassword={setConfirmPassword}
             />
-          </div>
-
-          <div className="mb-4 text-left">
-            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-            <input
-              id="confirmPassword"
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className="form-input"
-              placeholder="Repeat your password"
-              required
-            />
-          </div>
-
+          
           <button type="submit" className="register-button">
             Register
           </button>
