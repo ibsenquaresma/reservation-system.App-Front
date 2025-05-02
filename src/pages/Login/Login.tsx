@@ -31,7 +31,8 @@ export default function PasswordVerification() {
 
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('refreshToken', data.refreshToken);
-      
+      localStorage.setItem("userId", data.user.id);
+
       console.log(response.ok);
 
       if (response.ok) {
