@@ -33,7 +33,7 @@ function Layout() {
             <Route path="/my-bookings" element={<MyBookings />} />
             <Route path="/rooms" element={<RoomsAvailables />} />
             <Route path="/room-detail/:id" element={<RoomDetail />} />
-            <Route path="/reservation-room/:id" element={<RoomsReservations />} />
+            <Route path="/reservation-room/:roomId/:userId" element={<RoomsReservations />} />
             <Route path="/floor-plan" element={<FloorPlan />} />
             <Route path="/home" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
